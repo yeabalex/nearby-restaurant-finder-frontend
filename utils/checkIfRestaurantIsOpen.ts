@@ -7,6 +7,7 @@ export const isOpenNow = (openingHours: string): boolean => {
   
     const now = new Date();
     const currentHour = now.getHours() + now.getMinutes() / 60;
+    console.log(currentHour)
   
     return currentHour >= start && currentHour < end;
 };

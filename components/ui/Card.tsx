@@ -17,7 +17,7 @@ const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 mb-4 hover:shadow-md transition-shadow duration-300 border border-gray-200 dark:border-gray-700 flex items-center space-x-4"
+      className="dark:bg-gray-800 rounded-xl shadow-lg p-4 mb-4 hover:shadow-md transition-shadow duration-300 border border-gray-200 dark:border-gray-700 flex items-center space-x-4"
     >
       <div className="flex-1">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 truncate">
@@ -55,7 +55,7 @@ const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
           </div>
 
           <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate">
-            {restaurant.distance.toFixed(1)} miles away
+            {restaurant.distance.toFixed(1)} KM
           </div>
         </button>
       </div>

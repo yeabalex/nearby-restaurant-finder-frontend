@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, List, Utensils, Map } from "lucide-react";
 import RestaurantCard from "@/components/ui/Card";
@@ -8,19 +8,17 @@ import { ViewToggle } from "../ui/ViewToggle";
 import type { FilterButtonProps } from "@/components/ui/FilterButton";
 import { ViewButtonProps } from "../ui/ViewToggle";
 import { Restaurant } from "@/types/restaurant.type";
+import { useRouter } from "next/navigation";
 
 
 const RestaurantList = ({restaurants}:{restaurants:Restaurant[]}) => {
   const [sortBy, setSortBy] = useState<"open" | "rating" | "">("");
   const [view, setView] = useState<"list" | "map">("list");
   const [filterOpen, setFilterOpen] = useState(false);
+  const [sortedRestaurants, setSortedRestaurants] = useState<Restaurant[]>([])
+  const router = useRouter()
 
   const filterButton: FilterButtonProps[] = [
-    {
-      name: "Opened",
-      isActive: sortBy === "open",
-      onClick: () => setSortBy("open"),
-    },
     {
       name: "Rating",
       isActive: sortBy === "rating",
@@ -32,19 +30,29 @@ const RestaurantList = ({restaurants}:{restaurants:Restaurant[]}) => {
     {
       name: "List",
       icon: <List className="w-4 h-4" />,
-      onClick: () => setView("list"),
+      onClick: () => {setView("list"); router.push("?view=list")},
       isActive: view === "list",
     },
     {
       name: "Map",
       icon: <Map className="w-4 h-4" />,
-      onClick: () => setView("map"),
+      onClick: () => {setView("map"); router.push("?view=map")},
       isActive: view === "map",
     },
   ];
+useEffect(()=>{
+  setSortedRestaurants([...restaurants].sort((a, b) => {
+    if (sortBy === "rating") {
+      return b.averageStars - a.averageStars;
+    }
+    return 0;
+  }))
+},[sortBy])
 
+
+  
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-gray-100">
       <div className="max-w-2xl mx-auto p-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -60,8 +68,7 @@ const RestaurantList = ({restaurants}:{restaurants:Restaurant[]}) => {
                 Nearby Restaurants
               </h1>
             </div>
-            {/* Show toggle buttons only on phones */}
-            <div className="sm:hidden flex gap-2">
+            <div className="sm:hidden flex flex-col gap-2">
               {viewButton.map((button, index) => (
                 <ViewToggle key={index} {...button} />
               ))}
@@ -103,8 +110,8 @@ const RestaurantList = ({restaurants}:{restaurants:Restaurant[]}) => {
         </motion.div>
 
         <motion.div layout className="space-y-4">
-          {restaurants.length > 0 ? (
-            restaurants.map((restaurant, index) => (
+          {sortedRestaurants.length > 0 ? (
+            sortedRestaurants.map((restaurant, index) => (
               <motion.div
                 key={restaurant.id}
                 initial={{ opacity: 0, y: 20 }}
