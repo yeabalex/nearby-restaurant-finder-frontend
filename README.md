@@ -1,7 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Restaurant Finder App
 
-## Getting Started
+## Overview
+The **Restaurant Finder App** allows users to find nearby restaurants based on their current location. The app supports two main views:
 
+1. **List View**: Displays a list of restaurants with key details.
+2. **Map View**: Shows restaurants on a map, along with the user's current location.
+
+The app sorts restaurants by rating and offers filtering options to sort the displayed restaurants.
+
+## Features
+- **Geolocation**: Fetches the user's current location and shows nearby restaurants.
+- **Map Integration**: Provides a map view of the restaurant locations with the ability to select a restaurant.
+- **View Toggle**: Users can switch between list and map views.
+- **Restaurant Sorting**: Restaurants can be sorted by rating.
+- **Dynamic Content**: Displays loading states and error handling.
+
+## Tech Stack
+- **React**: For building the user interface.
+- **Next.js**: For server-side rendering and routing.
+- **Framer Motion**: For animations and transitions.
+- **GraphQL**: Used for fetching restaurant data from the backend.
+
+## Installation
 First, run the development server:
 
 ```bash
@@ -14,23 +34,4 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) with your browser.

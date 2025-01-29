@@ -6,7 +6,7 @@ import type { Restaurant } from "@/types/restaurant.type";
 import { GraphQLClient } from "@/utils/apiClient";
 import { baseURL } from "@/constants/url";
 import { useSearchParams } from "next/navigation";
-import { ViewToggle } from "../ui/ViewToggle";
+//import { ViewToggle } from "../ui/ViewToggle";
 
 export default function RestaurantLandingPage() {
   const [error, setError] = useState<string | null>(null);
@@ -35,11 +35,11 @@ export default function RestaurantLandingPage() {
             }
           }
           `,
-          { lat: 9, lon: 37, radius: 1000000 }
+          { lat, lon, radius: 50 }
         );
         setRestaurants((res.data as { nearbyRestaurantsWithoutReviews: Restaurant[] }).nearbyRestaurantsWithoutReviews);
       } catch (err) {
-        setError("Failed to fetch restaurants. Please try again.");
+        setError(`Failed to fetch restaurants. Please try again: ${err}`);
       } finally {
         setLoading(false);
       }

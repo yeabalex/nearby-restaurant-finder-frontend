@@ -30,7 +30,6 @@ import axios, {
       this.authToken = undefined;
     }
   
-    // Execute a GraphQL query
     public async query<T>(
       query: string,
       variables?: Record<string, unknown>,
@@ -114,7 +113,7 @@ import axios, {
     }
   }
   
-  // Updated interfaces
+  
   interface GraphQLError {
     message: string;
     locations?: Array<{
